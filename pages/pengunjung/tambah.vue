@@ -7,9 +7,9 @@
                     <div class="mb-3">
                         <input type="text" class="form-control form-control-lg rounded-5" placeholder="nama...">
                     </div>
-                    <div class="mb3">
+                    <div class="mb-3">
                         <select class="form-control form-control-lg form-select rounded-5">
-                            <option value="">keanggotaan</option>
+                            <option value="">kategori</option>
                             <option value="Siswa">Siswa</option>
                             <option value="Guru">Guru</option>
                             <option value="Staf">Staf</option>
@@ -17,26 +17,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <select class="form-control form-control-lg form-select rounded-5 mb-2">
-                                    <option value="">Tingkat</option>
-                                    <option value="X">X</option>
-                                    <option value="XI">XI</option>
-                                    <option value="XII">XII</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control form-control-lg form-select rounded-5 mb-2">
-                                    <option value="">Jurusan</option>
-                                    <option value="PPLG">PPLG</option>
-                                    <option value="TJKT">TJKT</option>
-                                    <option value="TSM">TSM</option>
-                                    <option value="DKV">DKV</option>
-                                    <option value="TOI">TOI</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
+        
                                 <select class="form-control form-control-lg form-select rounded-5 mb-2">
                                     <option value="">kelas</option>
                                     <option value="1">1</option>
@@ -44,8 +25,6 @@
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                 </select>
-                            </div>
-                        </div>
                     </div>
                     <div class="mb-3">
                         <select class="form-control form-control-lg form-select rounded-5">
@@ -61,3 +40,9 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+.form-control {
+    background-color: #D9D9D9;
+}
+</style>
