@@ -50,9 +50,7 @@
                 <option v-for="(item,i) in objectives" :key="i" :value="item.id">{{ item.nama }}</option>
               </select>
             </div>
-            <Nuxt-Link to="/pengunjung">
               <button type="submit" class="btn btn-light btn-lg rounded-5 px-5">KIRIM</button>
-            </Nuxt-Link>
           </form>
         </div>
       </div>
@@ -74,7 +72,8 @@ const form =ref({
 })
 const kirimData = async() => {
     const { error } = await supabase.from('pengunjung').insert([form.value])
-    if(!error)navigateTo('/pengunjung')
+    if(error) throw error
+    else navigateTo('/pengunjung')
 }
 
 const getKeanggotaan = async () => {

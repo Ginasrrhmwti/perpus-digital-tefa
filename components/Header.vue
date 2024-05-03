@@ -7,7 +7,7 @@
             <h1>Perpustakaan Digital</h1>
             <address>
                 SMKN 4 Tasikmalaya
-                JL.Depok, Sukamanah, purbaratu
+                <p>JL.Depok, Sukamanah, purbaratu</p>
             </address>
         </div>
     </div>
