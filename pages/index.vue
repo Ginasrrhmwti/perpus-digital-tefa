@@ -32,7 +32,7 @@
       <div class="col-lg-6">
           <div class="card rounded-5 color1">
             <div class="card-body d-flex justify-content-around d-flex align-items-center">
-              <h2><span class="no">3</span> pengunjung</h2>
+              <h2><span class="no">{{ jml_pengunjung }}</span> pengunjung</h2>
               </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
           
             <div class="card rounded-5 color2">
               <div class="card-body d-flex justify-content-around d-flex align-items-center">
-                <h2><span class="no">125</span> Buku</h2>
+                <h2><span class="no">{{ jml_buku }}</span> Buku</h2>
               </div>
             </div>            
         </div>
@@ -50,6 +50,33 @@
       </div>
     </div>
 </template>
+
+<script setup>
+const supabase = useSupabaseClient()
+const jml_pengunjung = ref(0)
+const jml_buku = ref(0)
+
+async function getjml_pengunjung() {
+  const{ error , data, count } = await supabase
+  .from("pengunjung")
+  .select('*', { count: 'exact' })
+  if (count) jml_pengunjung.value = count
+  
+}
+async function getjml_buku() {
+  const{ error , data, count } = await supabase
+  .from("Buku")
+  .select('*', { count: 'exact' })
+  if (count) jml_buku.value = count
+  
+}
+
+
+onMounted(() => {
+  getjml_pengunjung()
+  getjml_buku()
+})
+</script>
 
 
 <style scoped>

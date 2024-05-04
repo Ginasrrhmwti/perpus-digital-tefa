@@ -40,6 +40,7 @@ const visitors = ref([])
 
 const getPengunjung = async () => {
     const { data, error } = await supabase.from('pengunjung').select(`*, keanggotaan(*), keperluan(*)`)
+    .order('id', { ascending: false })
     if(data) visitors.value = data
 }
 
