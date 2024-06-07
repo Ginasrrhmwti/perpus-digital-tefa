@@ -4,15 +4,17 @@
       <div class="col-lg-12">
         <div class="my-3">
           <form @submit.prevent="getBuku">
-          <input
-            v-model="keyword"
-            type="search"
-            class="form-control rounded-5"
-            placeholder="mau baca apa hari ini?"
+            <input 
+              v-model="keyword"
+              type="search"
+              class="form-control rounded-5"
+              placeholder="mau baca apa hari ini?"
             />
           </form>
         </div>
-        <div class="my-3 text-muted">menampilkan 4 dari 125</div>
+        <div class="my-3 text-muted">
+          menampilkan {{ books?.length }} dari {{ totalBuku }}
+        </div>
         <div class="row justify-content-evenly">
           <div v-for="(buku, i) in books" :key="i" class="col-lg-2">
           <nuxt-link :to="`/buku/${buku.id}`">
@@ -35,13 +37,24 @@
 const supabase = useSupabaseClient()
 const keyword = ref("")
 const books = ref([])
-const getBuku = async () => {
-  const { data, error} = await supabase.from('Buku').select('* kategori(*)')
-  if(data) books.value= data
+const totalBuku = ref(0);
 
-}
+const getBuku = async () => {
+  const { data, error } = await supabase
+    .from("Buku")
+    .select(`*,kategori(*)`)
+    .ilike("judul", `%${keyword.value}%`);
+  if (data) books.value = data;
+};
+const getTotalBuku = async () => {
+  const { count, error } = await supabase
+    .from("Buku")
+    .select("*, kategori(*)", { count: "exact", head: true });
+  if (count) totalBuku.value = count;
+};
 onMounted(() => {
   getBuku()
+  getTotalBuku()
 })
 </script>
 <style scoped>
